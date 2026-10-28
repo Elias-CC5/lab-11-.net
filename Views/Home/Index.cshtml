@@ -1,0 +1,95 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<!-- Hero Section con Estilo Moderno -->
+<div class="p-5 mb-5 rounded-4 text-white shadow-lg position-relative overflow-hidden" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);">
+    <div class="position-absolute top-0 end-0 p-4 opacity-10 d-none d-md-block">
+        <i class="bi bi-calendar-event display-1"></i>
+    </div>
+    <div class="container-fluid py-4 position-relative">
+        <span class="badge bg-indigo bg-gradient text-white px-3 py-2 rounded-pill mb-3 fw-semibold" style="background-color: #4f46e5;">Plataforma Oficial de Gestión</span>
+        <h1 class="display-4 fw-bold mb-3 tracking-tight">Bienvenido a Eventos<span style="color: #818cf8;">.Web</span></h1>
+        <p class="fs-5 text-slate-300 mb-4 col-md-8 text-muted">
+            Organiza, administra y controla conferencias, talleres y seminarios con una interfaz fluida, rápida y diseñada para la máxima productividad.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+            <a asp-controller="Eventos" asp-action="Index" class="btn btn-light px-4 py-3 fw-semibold text-dark shadow-sm rounded-3 d-flex align-items-center gap-2">
+                <i class="bi bi-calendar3 text-primary"></i> Explorar Eventos
+            </a>
+            <a asp-controller="Inscripciones" asp-action="Create" class="btn btn-outline-light px-4 py-3 fw-semibold rounded-3 d-flex align-items-center gap-2">
+                <i class="bi bi-ticket-perforated"></i> Nueva Inscripción
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Tarjetas de Acceso Rápido / Módulos -->
+<div class="row g-4 mb-5">
+    <!-- Card Eventos -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4 transition-hover">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-primary-subtle text-primary p-3 rounded-3 fs-4 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;">
+                    <i class="bi bi-calendar-week"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-0 text-dark">Eventos</h5>
+                    <small class="text-muted">Catálogo general</small>
+                </div>
+            </div>
+            <p class="text-muted small mb-4">Administra las fechas, categorías, aforos y modalidades (presencial o virtual) de todos los eventos.</p>
+            <a asp-controller="Eventos" asp-action="Index" class="btn btn-sm btn-light text-primary fw-semibold mt-auto align-self-start border-0">
+                Ver eventos <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Card Asistentes -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4 transition-hover">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-success-subtle text-success p-3 rounded-3 fs-4 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px;">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-0 text-dark">Asistentes</h5>
+                    <small class="text-muted">Directorio de participantes</small>
+                </div>
+            </div>
+            <p class="text-muted small mb-4">Registra nuevos participantes validando sus documentos de identidad y correos electrónicos sin duplicados.</p>
+            <a asp-controller="Asistentes" asp-action="Index" class="btn btn-sm btn-light text-success fw-semibold mt-auto align-self-start border-0">
+                Ver asistentes <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Card Inscripciones -->
+    <div class="col-md-4">
+        <div class="card h-100 border-0 shadow-sm rounded-4 p-4 transition-hover">
+            <div class="d-flex align-items-center gap-3 mb-3">
+                <div class="bg-warning-subtle text-warning p-3 rounded-3 fs-4 d-flex align-items-center justify-content-center" style="width: 55px; height: 55px; background-color: #fef3c7 !important; color: #d97706 !important;">
+                    <i class="bi bi-ticket-detailed-fill"></i>
+                </div>
+                <div>
+                    <h5 class="fw-bold mb-0 text-dark">Inscripciones</h5>
+                    <small class="text-muted">Control de accesos</small>
+                </div>
+            </div>
+            <p class="text-muted small mb-4">Asocia de forma dinámica a los asistentes registrados con los eventos disponibles de manera centralizada.</p>
+            <a asp-controller="Inscripciones" asp-action="Index" class="btn btn-sm btn-light fw-semibold mt-auto align-self-start border-0" style="color: #d97706;">
+                Ver inscripciones <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+    </div>
+</div>
+
+<style>
+    .transition-hover {
+        transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+    .transition-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 1rem 3rem rgba(0,0,0,.08) !important;
+    }
+</style>

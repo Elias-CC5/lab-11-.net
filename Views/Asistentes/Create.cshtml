@@ -1,0 +1,62 @@
+@model Eventos.Web.Models.Asistente
+
+@{
+    ViewData["Title"] = "Registrar Asistente";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-7 col-lg-6">
+        <div class="card shadow-sm border-0 rounded-4 p-4 p-md-5 bg-white">
+            <div class="d-flex align-items-center gap-3 mb-4">
+                <div class="bg-primary-subtle text-primary p-3 rounded-3 fs-4 d-flex align-items-center justify-content-center" style="width: 50px; height: 50px;">
+                    <i class="bi bi-person-plus-fill"></i>
+                </div>
+                <div>
+                    <h3 class="fw-bold text-dark mb-0">Nuevo Asistente</h3>
+                    <p class="text-muted small mb-0">Completa los datos del participante</p>
+                </div>
+            </div>
+
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger border-0 rounded-3 small mb-3" role="alert"></div>
+
+                <div class="mb-3">
+                    <label asp-for="Nombres" class="form-label fw-semibold text-secondary small">Nombres Completos</label>
+                    <input asp-for="Nombres" class="form-control form-control-lg bg-light border-0 rounded-3 fs-6" placeholder="Ej. Juan Pérez" />
+                    <span asp-validation-for="Nombres" class="text-danger small mt-1 d-block"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Dni" class="form-label fw-semibold text-secondary small">DNI / Documento</label>
+                    <input asp-for="Dni" class="form-control form-control-lg bg-light border-0 rounded-3 fs-6" placeholder="Ej. 74839210" />
+                    <span asp-validation-for="Dni" class="text-danger small mt-1 d-block"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Correo" class="form-label fw-semibold text-secondary small">Correo Electrónico</label>
+                    <input asp-for="Correo" type="email" class="form-control form-control-lg bg-light border-0 rounded-3 fs-6" placeholder="correo@ejemplo.com" />
+                    <span asp-validation-for="Correo" class="text-danger small mt-1 d-block"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Telefono" class="form-label fw-semibold text-secondary small">Teléfono (Opcional)</label>
+                    <input asp-for="Telefono" class="form-control form-control-lg bg-light border-0 rounded-3 fs-6" placeholder="+51 999 999 999" />
+                    <span asp-validation-for="Telefono" class="text-danger small mt-1 d-block"></span>
+                </div>
+
+                <div class="d-flex align-items-center justify-content-between gap-3 pt-2">
+                    <a asp-action="Index" class="btn btn-light px-4 py-2 fw-semibold text-muted rounded-3 border-0">
+                        <i class="bi bi-arrow-left me-1"></i> Cancelar
+                    </a>
+                    <button type="submit" class="btn btn-primary px-4 py-2 rounded-3 fw-semibold shadow-sm">
+                        <i class="bi bi-check2-circle me-1"></i> Guardar Asistente
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

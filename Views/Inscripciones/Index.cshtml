@@ -1,0 +1,64 @@
+@model IEnumerable<Eventos.Web.Models.Inscripcion>
+
+@{
+    ViewData["Title"] = "Gestión de Inscripciones";
+}
+
+<div class="container mt-4">
+    <h2>Inscripciones a Eventos</h2>
+    <hr />
+
+    @if (TempData["Mensaje"] != null)
+    {
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            @TempData["Mensaje"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+
+    <p>
+        <a asp-action="Create" class="btn btn-success">Nueva Inscripción</a>
+    </p>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <th>Evento</th>
+                    <th>Asistente</th>
+                    <th>Fecha de Inscripción</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Evento?.Titulo</td>
+                        <td>@item.Asistente?.Nombres</td>
+                        <td>@item.FechaInscripcion.ToString("dd/MM/yyyy HH:mm")</td>
+                        <td>
+                            @if (item.Estado == "Confirmada")
+                            {
+                                <span class="badge bg-success">@item.Estado</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">@item.Estado</span>
+                            }
+                        </td>
+                        <td>
+                            @if (item.Estado == "Confirmada")
+                            {
+                                <form asp-action="Cancelar" asp-route-id="@item.Id" method="post" class="d-inline">
+                                    <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('¿Estás seguro de cancelar esta inscripción?');">Cancelar</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

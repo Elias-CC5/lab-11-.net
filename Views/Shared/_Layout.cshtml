@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Eventos.Web</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5.3.2 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --bs-primary: #4f46e5;
+            --bs-primary-rgb: 79, 70, 229;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+        /* Navbar Oscura de Lujo */
+        .navbar-custom {
+            background: #0f172a !important;
+            box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.25);
+            padding-top: 0.9rem;
+            padding-bottom: 0.9rem;
+        }
+        .navbar-brand {
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            font-size: 1.3rem;
+            color: #ffffff !important;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #94a3b8 !important;
+            transition: all 0.2s ease-in-out;
+            border-radius: 0.6rem;
+            padding: 0.5rem 0.9rem !important;
+            margin: 0 0.2rem;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+        .card {
+            border: none;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.04), 0 8px 10px -6px rgba(0, 0, 0, 0.04);
+            border-radius: 1rem;
+            background-color: #ffffff;
+        }
+        .btn-primary {
+            background-color: #4f46e5;
+            border-color: #4f46e5;
+            border-radius: 0.6rem;
+            padding: 0.6rem 1.3rem;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+            transition: all 0.2s ease;
+        }
+        .btn-primary:hover {
+            background-color: #4338ca;
+            border-color: #4338ca;
+            transform: translateY(-1px);
+        }
+        .table-custom {
+            background-color: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+        }
+        .table-custom thead {
+            background-color: #0f172a;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+        }
+        .footer {
+            background-color: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            color: #64748b;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark navbar-custom px-4">
+            <div class="container-fluid">
+                <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                    <div class="p-2 rounded-3 me-2 d-flex align-items-center justify-content-center text-white" style="background: #4f46e5;">
+                        <i class="bi bi-calendar-event fs-5"></i>
+                    </div>
+                    Eventos<span style="color: #818cf8; font-weight: 300;">.Web</span>
+                </a>
+                <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                    <ul class="navbar-nav align-items-center gap-1">
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index"><i class="bi bi-house-door me-1"></i> Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Eventos" asp-action="Index"><i class="bi bi-calendar3 me-1"></i> Eventos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Asistentes" asp-action="Index"><i class="bi bi-people me-1"></i> Asistentes</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Inscripciones" asp-action="Index"><i class="bi bi-ticket-perforated me-1"></i> Inscripciones</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container flex-grow-1 my-5">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer py-4 mt-auto text-center">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 - Eventos.Web • Todos los derechos reservados • <a asp-controller="Home" asp-action="Privacy" class="text-decoration-none text-muted">Privacidad</a></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

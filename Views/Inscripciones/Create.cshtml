@@ -1,0 +1,43 @@
+@model Eventos.Web.Models.Inscripcion
+
+@{
+    ViewData["Title"] = "Nueva Inscripción";
+}
+
+<div class="container mt-4">
+    <h2>Registrar Inscripción</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-3">
+                    <label asp-for="EventoId" class="control-label font-weight-bold">Evento</label>
+                    <select asp-for="EventoId" class="form-select" asp-items="ViewBag.Eventos">
+                        <option value="">-- Seleccione un Evento --</option>
+                    </select>
+                    <span asp-validation-for="EventoId" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="AsistenteId" class="control-label font-weight-bold">Asistente</label>
+                    <select asp-for="AsistenteId" class="form-select" asp-items="ViewBag.Asistentes">
+                        <option value="">-- Seleccione un Asistente --</option>
+                    </select>
+                    <span asp-validation-for="AsistenteId" class="text-danger"></span>
+                </div>
+
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Inscribir</button>
+                    <a asp-action="Index" class="btn btn-secondary">Volver al Listado</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
