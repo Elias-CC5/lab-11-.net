@@ -1,6 +1,7 @@
 using Eventos.Web.Models;
 using Eventos.Web.Repositorios;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Threading.Tasks;
 
 namespace Eventos.Web.Controllers
@@ -19,8 +20,10 @@ namespace Eventos.Web.Controllers
         // GET: Eventos
         public async Task<IActionResult> Index(int? categoriaId)
         {
-            ViewBag.Categorias = await _categoriaRepo.ObtenerActivasAsync();
+            var categorias = await _categoriaRepo.ObtenerActivasAsync();
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre", categoriaId);
             ViewBag.CategoriaSeleccionada = categoriaId;
+
             var eventos = await _eventoRepo.ObtenerTodosAsync(categoriaId);
             return View(eventos);
         }
@@ -36,7 +39,8 @@ namespace Eventos.Web.Controllers
         // GET: Eventos/Create
         public async Task<IActionResult> Create()
         {
-            ViewBag.Categorias = await _categoriaRepo.ObtenerActivasAsync();
+            var categorias = await _categoriaRepo.ObtenerActivasAsync();
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre");
             return View();
         }
 
@@ -51,7 +55,9 @@ namespace Eventos.Web.Controllers
                 TempData["Mensaje"] = "Evento creado exitosamente.";
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Categorias = await _categoriaRepo.ObtenerActivasAsync();
+
+            var categorias = await _categoriaRepo.ObtenerActivasAsync();
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre", evento.CategoriaId);
             return View(evento);
         }
 
@@ -61,7 +67,9 @@ namespace Eventos.Web.Controllers
             var evento = await _eventoRepo.ObtenerPorIdAsync(id);
             if (evento == null) return NotFound();
 
-            ViewBag.Categorias = await _categoriaRepo.ObtenerActivasAsync();
+            var categorias = await _categoriaRepo.ObtenerActivasAsync();
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre", evento.CategoriaId);
+
             return View(evento);
         }
 
@@ -78,7 +86,10 @@ namespace Eventos.Web.Controllers
                 TempData["Mensaje"] = "Evento actualizado exitosamente.";
                 return RedirectToAction(nameof(Index));
             }
-            ViewBag.Categorias = await _categoriaRepo.ObtenerActivasAsync();
+
+            var categorias = await _categoriaRepo.ObtenerActivasAsync();
+            ViewBag.Categorias = new SelectList(categorias, "Id", "Nombre", evento.CategoriaId);
+
             return View(evento);
         }
 
